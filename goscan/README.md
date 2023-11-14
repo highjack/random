@@ -5,7 +5,5 @@
 * very beta
   
 # HTF
-<code>
 chmod +x ./install.sh
 ./install.sh
-</code>
