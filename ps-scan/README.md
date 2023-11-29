@@ -5,7 +5,6 @@ The packages are zipped up into a file called packagename-version.zip
 # HTF
 ```
 chmod +x ./install.sh
-./scan.sh name version
+./ps-scan.sh name version
 ```
 
-if you want to modify the regexes used, edit regexes.txt 
