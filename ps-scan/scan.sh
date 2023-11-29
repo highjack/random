@@ -12,5 +12,5 @@ docker run -ti -v $(pwd)/packages:/packages -e PACKAGE=$1 -e VERSION=$2  powersh
 mkdir ./nupkg 2>/dev/null
 find . -wholename "./packages/*.nupkg" -exec cp {} ./nupkg/ \;
 python3 ps-scan.py $1 $2
-#rm -r ./packages
+rm -r ./packages
 rm -r ./nupkg
