@@ -51,7 +51,7 @@ IO\.FileStream
 Invoke-Expression
 IEX 
 Invoke-Command 
-ICM -
+ICM \-
 New-PSSession
 PromptForCredential
 SE_PRIVILEGE_ENABLED
