@@ -20,13 +20,10 @@ def run_grep(src_folder, regex_file, report_file):
     with open(regex_file, "r") as regex_file:
         regex_patterns = regex_file.read().splitlines()
 
-    with open(report_file, "a") as report:
         for pattern in regex_patterns:
-            command = ["grep", "-iEHnr", pattern, src_folder]
-            result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            if result.stdout:
-                report.write(result.stdout)
-
+            command = "grep -iEHnr " +  pattern +  " --include='*.ps1' --include='*.psm1' " + src_folder + ">> " + report_file
+            print("Running " + command)
+            os.system(command)
 
 
 if __name__ == "__main__":
@@ -35,10 +32,6 @@ if __name__ == "__main__":
     parser.add_argument("package_version", help="Version of the package")
     args = parser.parse_args()
     
-    try:
-    	shutil.rmtree("./packages")
-    except:
-    	pass
     pkg_folder = "./packages"
     
     report_name = args.package_name + "-" + args.package_version + ".txt"
@@ -46,8 +39,5 @@ if __name__ == "__main__":
     if os.path.exists(report_name):
         os.remove(report_name)
     zip_name = report_name.replace(".txt",".zip")
-    create_zip(pkg_folder,"./"+zip_name)
-    run_grep(pkg_folder, "regexes.txt",report_name)
-    print("cleaning up directory")
-    shutil.rmtree(pkg_folder)
-
+    create_zip("./nupkg","./"+zip_name)
+    run_grep(pkg_folder, "regexes",report_name)
