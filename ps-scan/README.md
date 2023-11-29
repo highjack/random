@@ -7,4 +7,4 @@ The packages are zipped up into a file called packagename-version.zip
 chmod +x ./install.sh
 ./ps-scan.sh name version
 ```
-
+When the scan is completed the zipped up nupkg files and report will be in ./results
