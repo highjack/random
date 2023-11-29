@@ -17,14 +17,7 @@ def create_zip(folder_path, zip_filename):
 
 def run_grep(src_folder, regex_file, report_file):
     print("Grepping for potentially dangerous functionality, report will be written to {}, please wait...".format(report_file))
-    with open(regex_file, "r") as regex_file:
-        regex_patterns = regex_file.read().splitlines()
-
-        for pattern in regex_patterns:
-            command = "grep -iEHnr " +  pattern +  " --include='*.ps1' --include='*.psm1' " + src_folder + ">> " + report_file
-            print("Running " + command)
-            os.system(command)
-
+    os.system("grep -iEHnr --include='*.ps1' --include='*.psm1' -f ./regexes ./packages >> " + report_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Download and explore a package from PowerShell Gallery.")
